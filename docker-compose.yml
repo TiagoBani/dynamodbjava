@@ -1,0 +1,18 @@
+services:
+  dynamodb:
+    image: amazon/dynamodb-local
+    hostname: dynamodb-local
+    container_name: dynamodb-local
+    environment:
+      - AWS_ACCESS_KEY_ID=AKIAXXXXXXXXXXXXXXXX
+      - AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXX++XXXXXXXXXXXXXXXXXXXXXXX
+    ports:
+      - "8000:8000"
+
+  dynamodb-init:
+    build: dynamodb-init
+    environment:
+      - AWS_ACCESS_KEY_ID=AKIAXXXXXXXXXXXXXXXX
+      - AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXX++XXXXXXXXXXXXXXXXXXXXXXX
+    depends_on:
+      - dynamodb
